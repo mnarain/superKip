@@ -10,7 +10,7 @@ public class VerpakteKipService {
 
     public VerpakteKipService(VerpakteKip[] verpakteKippen) {
         if (verpakteKippen != null || verpakteKippen.length > 0) {
-            this.opgeslagenVK = verpakteKippen.length < 100 ? ArrayUtility.merge(verpakteKippen)  :verpakteKippen;
+            this.opgeslagenVK = verpakteKippen.length < 100 ? ArrayUtility.merge(verpakteKippen)  : verpakteKippen;
         } else {
             this.opgeslagenVK = new VerpakteKip[100];
         }
@@ -18,7 +18,7 @@ public class VerpakteKipService {
 
     public void voegVerpakteKipToe(VerpakteKip VerpakteKip) throws Exception {
         int vkOpslagIndex = LinearySearch.findNextInsert(opgeslagenVK);
-        if (vkOpslagIndex >= 0) {
+        if (vkOpslagIndex >= 0 && vkOpslagIndex < 100) {
             opgeslagenVK[vkOpslagIndex] = VerpakteKip;
         } else {
             throw new Exception("Het opslagruim is vol!");
