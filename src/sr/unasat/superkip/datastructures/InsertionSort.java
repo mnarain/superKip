@@ -1,5 +1,7 @@
 package sr.unasat.superkip.datastructures;
 
+import sr.unasat.superkip.entities.VerpakteKip;
+
 public class InsertionSort {
 
     /*
@@ -10,16 +12,16 @@ public class InsertionSort {
       And it takes minimum time (Order of n)
       when elements are already sorted.
      */
-    public static int[] execute(int[] array) {
+    public static VerpakteKip[] execute(VerpakteKip[] array) {
         int size = array.length;
         for (int firstUnsortedIndex = 1; firstUnsortedIndex < size; ++firstUnsortedIndex) {
-            int firstUnsortedValue = array[firstUnsortedIndex];
+            VerpakteKip firstUnsortedValue = array[firstUnsortedIndex];
             int sortedIndex = firstUnsortedIndex - 1;
 
             /* Move elements of array[0..firstUnsortedIndex-1], that are
                greater than firstUnsortedValue, to one position ahead
                of their current position */
-            while (sortedIndex >= 0 && array[sortedIndex] > firstUnsortedValue) {
+            while (sortedIndex >= 0 && array[sortedIndex].getLabelNumber() > firstUnsortedValue.getLabelNumber()) {
                 //swap values of sorted part that are higher
                 array[sortedIndex + 1] = array[sortedIndex];
                 sortedIndex = sortedIndex - 1;
