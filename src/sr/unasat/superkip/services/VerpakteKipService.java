@@ -1,6 +1,7 @@
 package sr.unasat.superkip.services;
 
 import sr.unasat.superkip.datastructures.BinarySearch;
+import sr.unasat.superkip.datastructures.InsertionSort;
 import sr.unasat.superkip.datastructures.LinearySearch;
 import sr.unasat.superkip.entities.VerpakteKip;
 import sr.unasat.superkip.util.ArrayUtility;
@@ -9,11 +10,14 @@ public class VerpakteKipService {
     VerpakteKip[] opgeslagenVK;
 
     public VerpakteKipService(VerpakteKip[] verpakteKippen) {
+
         if (verpakteKippen != null || verpakteKippen.length > 0) {
+            InsertionSort.execute(verpakteKippen);
             this.opgeslagenVK = verpakteKippen.length < 100 ? ArrayUtility.merge(verpakteKippen)  : verpakteKippen;
         } else {
             this.opgeslagenVK = new VerpakteKip[100];
         }
+        sorteerVerpakteKip();
     }
 
     public void voegVerpakteKipToe(VerpakteKip VerpakteKip) throws Exception {
@@ -26,7 +30,7 @@ public class VerpakteKipService {
     }
 
     public void sorteerVerpakteKip() {
-
+        InsertionSort.execute(opgeslagenVK);
     }
 
     public VerpakteKip zoek(int labelNumber) {
